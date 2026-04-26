@@ -967,152 +967,141 @@
   </div>
 
   <div class="hero-visual">
-    <svg class="mobius-svg" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius strip illustration representing continuous AI-powered lead flow">
+    <svg class="mobius-svg" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Orbital flow diagram showing the four stages of AI-powered lead response">
       <defs>
-        <!-- Left lobe: face-on, amber shimmer near crossing, deeper terra at tip -->
-        <linearGradient id="leftFill" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%"   stop-color="#e8a235" stop-opacity="0.92"/>
-          <stop offset="25%"  stop-color="#c4622d" stop-opacity="0.90"/>
-          <stop offset="65%"  stop-color="#9a4820" stop-opacity="0.78"/>
-          <stop offset="100%" stop-color="#7a3518" stop-opacity="0.58"/>
-        </linearGradient>
-        <!-- Right lobe: behind at crossing, slightly darker -->
-        <linearGradient id="rightFill" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stop-color="#c4622d" stop-opacity="0.68"/>
-          <stop offset="50%"  stop-color="#8a3e1a" stop-opacity="0.52"/>
-          <stop offset="100%" stop-color="#5a2810" stop-opacity="0.35"/>
-        </linearGradient>
-        <!-- Surface shading: dark at ribbon top/bottom edges, open centre -->
-        <linearGradient id="leftShade" x1="0" y1="144" x2="0" y2="222" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stop-color="#0f0d0b" stop-opacity="0.48"/>
-          <stop offset="22%"  stop-color="#0f0d0b" stop-opacity="0"/>
-          <stop offset="78%"  stop-color="#0f0d0b" stop-opacity="0"/>
-          <stop offset="100%" stop-color="#0f0d0b" stop-opacity="0.38"/>
-        </linearGradient>
-        <linearGradient id="rightShade" x1="0" y1="138" x2="0" y2="202" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stop-color="#0f0d0b" stop-opacity="0.42"/>
-          <stop offset="24%"  stop-color="#0f0d0b" stop-opacity="0"/>
-          <stop offset="76%"  stop-color="#0f0d0b" stop-opacity="0"/>
-          <stop offset="100%" stop-color="#0f0d0b" stop-opacity="0.32"/>
-        </linearGradient>
-        <!-- Highlight shimmer on left lobe face -->
-        <radialGradient id="leftHighlight" cx="35%" cy="48%" r="52%">
-          <stop offset="0%"   stop-color="#f5c56a" stop-opacity="0.22"/>
-          <stop offset="100%" stop-color="#f5c56a" stop-opacity="0"/>
-        </radialGradient>
-        <!-- Ambient glow at crossing -->
-        <radialGradient id="crossGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stop-color="#c4622d" stop-opacity="0.22"/>
+        <!-- Central ambient glow -->
+        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#c4622d" stop-opacity="0.14"/>
+          <stop offset="55%"  stop-color="#c4622d" stop-opacity="0.04"/>
           <stop offset="100%" stop-color="#c4622d" stop-opacity="0"/>
         </radialGradient>
-        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3" result="blur"/>
+        <!-- Glow filter for particles + bright nodes -->
+        <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="4" result="blur"/>
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
-        <!-- Subtle glow for labels -->
-        <filter id="labelGlow" x="-30%" y="-60%" width="160%" height="220%">
-          <feGaussianBlur stdDeviation="2.5" result="blur"/>
+        <!-- Subtle label glow -->
+        <filter id="labelGlow" x="-15%" y="-50%" width="130%" height="200%">
+          <feGaussianBlur stdDeviation="1.8" result="blur"/>
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
 
-      <!-- Ambient glow at crossing -->
-      <ellipse cx="252" cy="178" rx="40" ry="22" fill="url(#crossGlow)"/>
+      <!-- Background ambient glow -->
+      <circle cx="240" cy="180" r="135" fill="url(#centerGlow)"/>
 
-      <!-- RIGHT LOBE: behind at crossing, drawn first.
-           Ribbon narrows at crossing (~12px) then opens to 44px at tip. -->
-      <path d="M 253 173
-               C 296 148, 372 138, 432 148
-               C 458 158, 458 182, 432 192
-               C 372 200, 296 195, 253 185
-               Z"
-            fill="url(#rightFill)"/>
-      <path d="M 253 173
-               C 296 148, 372 138, 432 148
-               C 458 158, 458 182, 432 192
-               C 372 200, 296 195, 253 185
-               Z"
-            fill="url(#rightShade)"/>
+      <!-- Outer decorative ring (dashed, very faint) -->
+      <circle cx="240" cy="180" r="130" stroke="rgba(196,98,45,0.10)" stroke-width="0.5"
+              stroke-dasharray="3 11" fill="none"/>
 
-      <!-- LEFT LOBE: in front at crossing, drawn second.
-           Ribbon opens from 12px at crossing to 48px at tip.
-           Right edge closes via small bulge (x~260) showing the near surface. -->
-      <path d="M 250 173
-               C 200 155, 120 147, 62 154
-               C 42 160, 42 196, 62 202
-               C 120 218, 200 195, 250 185
-               C 256 181, 260 178, 260 174
-               C 260 170, 256 170, 250 173
-               Z"
-            fill="url(#leftFill)"/>
-      <path d="M 250 173
-               C 200 155, 120 147, 62 154
-               C 42 160, 42 196, 62 202
-               C 120 218, 200 195, 250 185
-               C 256 181, 260 178, 260 174
-               C 260 170, 256 170, 250 173
-               Z"
-            fill="url(#leftShade)"/>
-      <path d="M 250 173
-               C 200 155, 120 147, 62 154
-               C 42 160, 42 196, 62 202
-               C 120 218, 200 195, 250 185
-               C 256 181, 260 178, 260 174
-               C 260 170, 256 170, 250 173
-               Z"
-            fill="url(#leftHighlight)"/>
+      <!-- Inner decorative ring (dashed, very faint) -->
+      <circle cx="240" cy="180" r="78"  stroke="rgba(196,98,45,0.08)" stroke-width="0.5"
+              stroke-dasharray="2 9" fill="none"/>
 
-      <!-- Depth shadow at crossing -->
-      <path d="M 253 173 C 259 177, 259 181, 253 185"
-            stroke="rgba(4,3,2,0.92)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Orbit ring: base track (full circle, low opacity) -->
+      <circle cx="240" cy="180" r="100" stroke="rgba(196,98,45,0.16)" stroke-width="1" fill="none"/>
 
-      <!-- Animated particles -->
-      <circle r="4" fill="#e8a235" filter="url(#glow)" opacity="0.9">
-        <animateMotion dur="6s" repeatCount="indefinite">
-          <mpath href="#mobius-path"/>
-        </animateMotion>
-      </circle>
-      <circle r="2.5" fill="#c4622d" opacity="0.70">
-        <animateMotion dur="6s" begin="2s" repeatCount="indefinite">
-          <mpath href="#mobius-path"/>
-        </animateMotion>
-      </circle>
+      <!-- Progressive arc overlays — clockwise journey:
+           LEAD IN (8 o'clock, 153,230) → YAVE RESPONDS (11, 190,93)
+           → VIEWING SET (1, 290,93) → DEAL CLOSED (4, 327,230) → back -->
+      <!-- Arc 1: LEAD IN → YAVE RESPONDS (left side, going up, dim) -->
+      <path d="M 153 230 A 100 100 0 0 1 190 93"
+            stroke="rgba(196,98,45,0.32)" stroke-width="1.5" fill="none"/>
+      <!-- Arc 2: YAVE RESPONDS → VIEWING SET (across top, medium) -->
+      <path d="M 190 93 A 100 100 0 0 1 290 93"
+            stroke="rgba(196,98,45,0.52)" stroke-width="1.5" fill="none"/>
+      <!-- Arc 3: VIEWING SET → DEAL CLOSED (right side, going down, bright) -->
+      <path d="M 290 93 A 100 100 0 0 1 327 230"
+            stroke="rgba(196,98,45,0.74)" stroke-width="1.5" fill="none"/>
+      <!-- Arc 4: DEAL CLOSED → LEAD IN (bottom, completing cycle, dashed/dim) -->
+      <path d="M 327 230 A 100 100 0 0 1 153 230"
+            stroke="rgba(196,98,45,0.18)" stroke-width="1" stroke-dasharray="3 5" fill="none"/>
 
-      <!-- Particle path: ribbon centreline tracing both lobes -->
-      <path id="mobius-path"
-            d="M 62 178
-               C 106 149, 192 148, 252 178
-               C 298 142, 374 138, 432 170
-               C 456 158, 458 184, 432 192
-               C 374 200, 298 196, 252 184
-               C 196 218, 108 214, 62 202
-               C 42 192, 42 168, 62 178
+      <!-- Orbit path for particle animation (full clockwise circle) -->
+      <path id="orbit-path"
+            d="M 240 80
+               A 100 100 0 0 1 340 180
+               A 100 100 0 0 1 240 280
+               A 100 100 0 0 1 140 180
+               A 100 100 0 0 1 240 80
                Z"
             fill="none"/>
 
-      <!-- Corner brackets -->
-      <rect x="30" y="30" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
-      <rect x="30" y="30" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
-      <rect x="410" y="30" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
-      <rect x="429" y="30" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
-      <rect x="30" y="319" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
-      <rect x="30" y="300" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
-      <rect x="410" y="319" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
-      <rect x="429" y="300" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
+      <!-- Particles: 3 at staggered offsets, orbiting clockwise -->
+      <circle r="3.5" fill="#e8a235" filter="url(#glow)" opacity="0.92">
+        <animateMotion dur="8s" repeatCount="indefinite">
+          <mpath href="#orbit-path"/>
+        </animateMotion>
+      </circle>
+      <circle r="2" fill="#c4622d" opacity="0.62">
+        <animateMotion dur="8s" begin="-2.67s" repeatCount="indefinite">
+          <mpath href="#orbit-path"/>
+        </animateMotion>
+      </circle>
+      <circle r="1.5" fill="#e8a235" opacity="0.38">
+        <animateMotion dur="8s" begin="-5.33s" repeatCount="indefinite">
+          <mpath href="#orbit-path"/>
+        </animateMotion>
+      </circle>
 
-      <!-- Waypoint dots: pinned via getPointAtLength at t=0, 0.18, 0.42, 0.58 -->
-      <circle cx="62"  cy="178" r="5" fill="rgba(12,10,8,0.72)" stroke="rgba(196,98,45,0.52)" stroke-width="1.8"/>
-      <circle cx="212" cy="163" r="5" fill="rgba(12,10,8,0.72)" stroke="rgba(196,98,45,0.72)" stroke-width="1.8"/>
-      <circle cx="408" cy="159" r="5" fill="rgba(12,10,8,0.72)" stroke="rgba(220,138,50,0.90)" stroke-width="1.8"/>
-      <circle cx="372" cy="196" r="5" fill="rgba(20,14,8,0.80)"  stroke="#e8a235"              stroke-width="2"/>
+      <!-- Centre pulsing dot -->
+      <circle cx="240" cy="180" r="3" fill="rgba(196,98,45,0.45)">
+        <animate attributeName="r"       values="2.5;4.5;2.5" dur="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.45;0.70;0.45" dur="3.2s" repeatCount="indefinite"/>
+      </circle>
 
-      <!-- Labels: each near its dot, full-opacity amber tones for clear reading -->
-      <g font-family="'DM Mono', monospace" font-size="10" filter="url(#labelGlow)">
-        <text x="12"  y="210" fill="#7a3518" letter-spacing="2.5">LEAD IN</text>
-        <text x="148" y="146" fill="#b05a22" letter-spacing="2">YAVE RESPONDS</text>
-        <text x="345" y="138" fill="#d07830" letter-spacing="2">VIEWING SET</text>
-        <text x="302" y="235" fill="#e8a235" letter-spacing="2">DEAL CLOSED</text>
+      <!-- ── WAYPOINT NODES (8 / 11 / 1 / 4 o'clock, r=100 orbit) ── -->
+
+      <!-- 1. LEAD IN (153, 230) — dimmest -->
+      <circle cx="153" cy="230" r="16" stroke="rgba(196,98,45,0.10)" stroke-width="0.5" fill="rgba(196,98,45,0.04)"/>
+      <circle cx="153" cy="230" r="8"  stroke="rgba(196,98,45,0.40)" stroke-width="1"   fill="rgba(10,8,6,0.85)"/>
+      <circle cx="153" cy="230" r="2.5" fill="rgba(196,98,45,0.55)"/>
+      <!-- tick line toward label -->
+      <line x1="144" y1="237" x2="130" y2="252" stroke="rgba(196,98,45,0.22)" stroke-width="0.8"/>
+
+      <!-- 2. YAVE RESPONDS (190, 93) -->
+      <circle cx="190" cy="93" r="16" stroke="rgba(196,98,45,0.15)" stroke-width="0.5" fill="rgba(196,98,45,0.05)"/>
+      <circle cx="190" cy="93" r="8"  stroke="rgba(196,98,45,0.60)" stroke-width="1"   fill="rgba(10,8,6,0.85)"/>
+      <circle cx="190" cy="93" r="2.5" fill="rgba(196,98,45,0.75)"/>
+      <!-- tick line toward label -->
+      <line x1="182" y1="85" x2="170" y2="72" stroke="rgba(196,98,45,0.28)" stroke-width="0.8"/>
+
+      <!-- 3. VIEWING SET (290, 93) -->
+      <circle cx="290" cy="93" r="16" stroke="rgba(196,98,45,0.22)" stroke-width="0.5" fill="rgba(196,98,45,0.07)"/>
+      <circle cx="290" cy="93" r="8"  stroke="rgba(196,98,45,0.80)" stroke-width="1"   fill="rgba(10,8,6,0.85)"/>
+      <circle cx="290" cy="93" r="2.5" fill="rgba(196,98,45,0.90)"/>
+      <!-- tick line toward label -->
+      <line x1="298" y1="85" x2="308" y2="72" stroke="rgba(196,98,45,0.36)" stroke-width="0.8"/>
+
+      <!-- 4. DEAL CLOSED (327, 230) — full brightness, glowing -->
+      <circle cx="327" cy="230" r="16" stroke="rgba(232,162,53,0.28)" stroke-width="0.5"
+              fill="rgba(196,98,45,0.10)" filter="url(#glow)"/>
+      <circle cx="327" cy="230" r="8"  stroke="#e8a235" stroke-width="1.5" fill="rgba(20,14,8,0.88)"/>
+      <circle cx="327" cy="230" r="2.5" fill="#e8a235"/>
+      <!-- tick line toward label -->
+      <line x1="336" y1="237" x2="348" y2="252" stroke="rgba(232,162,53,0.38)" stroke-width="0.8"/>
+
+      <!-- ── LABELS ── -->
+      <g font-family="'DM Mono', monospace" font-size="9.5" letter-spacing="2" filter="url(#labelGlow)">
+        <!-- LEAD IN: bottom-left, text-anchor end aligns right of point -->
+        <text x="126" y="268" fill="#8a4418" text-anchor="end">LEAD IN</text>
+        <!-- YAVE RESPONDS: top-left -->
+        <text x="164" y="62"  fill="#b05a22" text-anchor="end">YAVE RESPONDS</text>
+        <!-- VIEWING SET: top-right -->
+        <text x="316" y="62"  fill="#cc7230" text-anchor="start">VIEWING SET</text>
+        <!-- DEAL CLOSED: bottom-right -->
+        <text x="354" y="268" fill="#e8a235"  text-anchor="start">DEAL CLOSED</text>
       </g>
+
+      <!-- Corner brackets -->
+      <rect x="30" y="22" width="18" height="1" fill="rgba(196,98,45,0.28)"/>
+      <rect x="30" y="22" width="1" height="18" fill="rgba(196,98,45,0.28)"/>
+      <rect x="432" y="22" width="18" height="1" fill="rgba(196,98,45,0.28)"/>
+      <rect x="449" y="22" width="1" height="18" fill="rgba(196,98,45,0.28)"/>
+      <rect x="30" y="338" width="18" height="1" fill="rgba(196,98,45,0.28)"/>
+      <rect x="30" y="320" width="1" height="18" fill="rgba(196,98,45,0.28)"/>
+      <rect x="432" y="338" width="18" height="1" fill="rgba(196,98,45,0.28)"/>
+      <rect x="449" y="320" width="1" height="18" fill="rgba(196,98,45,0.28)"/>
     </svg>
   </div>
 </section>
