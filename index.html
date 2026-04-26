@@ -1034,13 +1034,19 @@
           C 80 210, 80 195, 80 180 Z"
         fill="none"/>
 
-      <g font-family="'DM Mono', monospace" fill="rgba(196,98,45,0.7)" font-size="9" letter-spacing="2">
-        <text x="88" y="233">LEAD IN</text>
-        <text x="332" y="133">DEAL CLOSED</text>
-      </g>
+      <!-- Waypoint dots — progressive brightness along the journey -->
+      <circle cx="108" cy="220" r="3" fill="rgba(196,98,45,0.28)"/>
+      <circle cx="198" cy="200" r="3" fill="rgba(196,98,45,0.45)"/>
+      <circle cx="312" cy="198" r="3" fill="rgba(196,98,45,0.62)"/>
+      <circle cx="370" cy="145" r="3" fill="rgba(196,98,45,0.82)"/>
 
-      <circle cx="110" cy="225" r="3" fill="rgba(196,98,45,0.5)"/>
-      <circle cx="370" cy="145" r="3" fill="rgba(196,98,45,0.5)"/>
+      <!-- Waypoint labels — progressive brightness, dimmest at entry, brightest at close -->
+      <g font-family="'DM Mono', monospace" font-size="9">
+        <text x="72"  y="242" fill="rgba(196,98,45,0.32)" letter-spacing="2">LEAD IN</text>
+        <text x="148" y="220" fill="rgba(196,98,45,0.50)" letter-spacing="1.4">YAVE RESPONDS</text>
+        <text x="268" y="218" fill="rgba(196,98,45,0.68)" letter-spacing="2">VIEWING SET</text>
+        <text x="326" y="133" fill="rgba(196,98,45,0.90)" letter-spacing="2">DEAL CLOSED</text>
+      </g>
 
       <rect x="30" y="30" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
       <rect x="30" y="30" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
