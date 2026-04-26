@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <kyero_feed_version>3</kyero_feed_version>
+  <property>
+    <id>TEST-SAL-001</id>
+    <date>2026-04-25</date>
+    <ref>TEST-SAL-001</ref>
+    <type>piso</type>
+    <town>Salamanca</town>
+    <province>Madrid</province>
+    <country>Spain</country>
+    <price>2400</price>
+    <currency>EUR</currency>
+    <price_freq>month</price_freq>
+    <beds>2</beds>
+    <baths>1</baths>
+    <surface_area><built>85</built></surface_area>
+    <title>
+      <es>Piso luminoso en Salamanca con terraza</es>
+      <en>Bright apartment in Salamanca with terrace</en>
+    </title>
+    <desc>
+      <es>Precioso piso de 2 habitaciones en el corazón de Salamanca. Recién reformado con acabados de alta calidad. Terraza de 10m² con vistas a la calle. Cerca del Retiro y de la estación de metro Velázquez. Calefacción central incluida.</es>
+      <en>Beautiful 2-bedroom apartment in the heart of Salamanca. Recently renovated with high-quality finishes. 10m² terrace with street views. Close to Retiro park and Velázquez metro station. Central heating included.</en>
+    </desc>
+    <images>
+      <image>
+        <url>https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800</url>
+      </image>
+    </images>
+    <location>
+      <latitude>40.4280</latitude>
+      <longitude>-3.6780</longitude>
+    </location>
+    <features>
+      <feature>Terraza</feature>
+      <feature>Ascensor</feature>
+      <feature>Calefacción central</feature>
+    </features>
+  </property>
+  <property>
+    <id>TEST-CHM-002</id>
+    <date>2026-04-25</date>
+    <ref>TEST-CHM-002</ref>
+    <type>ático</type>
+    <town>Chamberí</town>
+    <province>Madrid</province>
+    <country>Spain</country>
+    <price>3100</price>
+    <currency>EUR</currency>
+    <price_freq>month</price_freq>
+    <beds>3</beds>
+    <baths>2</baths>
+    <surface_area><built>110</built></surface_area>
+    <title>
+      <es>Ático con terraza panorámica en Chamberí</es>
+      <en>Penthouse with panoramic terrace in Chamberí</en>
+    </title>
+    <desc>
+      <es>Espectacular ático de 3 habitaciones con terraza de 25m² y vistas a la sierra. Dos baños completos, cocina equipada, plaza de garaje incluida. A 5 minutos del metro Alonso Martínez. Edificio con portero.</es>
+      <en>Spectacular 3-bedroom penthouse with 25m² terrace and mountain views. Two full bathrooms, equipped kitchen, parking space included. 5 minutes from Alonso Martínez metro. Building with doorman.</en>
+    </desc>
+    <images>
+      <image>
+        <url>https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800</url>
+      </image>
+    </images>
+    <location>
+      <latitude>40.4320</latitude>
+      <longitude>-3.6970</longitude>
+    </location>
+    <features>
+      <feature>Terraza</feature>
+      <feature>Garaje</feature>
+      <feature>Portero</feature>
+      <feature>Ascensor</feature>
+    </features>
+  </property>
+  <property>
+    <id>TEST-RET-003</id>
+    <date>2026-04-25</date>
+    <ref>TEST-RET-003</ref>
+    <type>piso</type>
+    <town>Retiro</town>
+    <province>Madrid</province>
+    <country>Spain</country>
+    <price>1800</price>
+    <currency>EUR</currency>
+    <price_freq>month</price_freq>
+    <beds>1</beds>
+    <baths>1</baths>
+    <surface_area><built>55</built></surface_area>
+    <title>
+      <es>Estudio reformado junto al Retiro</es>
+      <en>Renovated studio next to Retiro park</en>
+    </title>
+    <desc>
+      <es>Acogedor piso de 1 habitación completamente reformado. Suelos de madera, cocina americana nueva. A 2 minutos del Parque del Retiro. Ideal para profesionales. Gastos de comunidad incluidos.</es>
+      <en>Cozy 1-bedroom apartment fully renovated. Hardwood floors, new open kitchen. 2 minutes from Retiro Park. Ideal for professionals. Community fees included.</en>
+    </desc>
+    <images>
+      <image>
+        <url>https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800</url>
+      </image>
+    </images>
+    <location>
+      <latitude>40.4140</latitude>
+      <longitude>-3.6830</longitude>
+    </location>
+    <features>
+      <feature>Reformado</feature>
+      <feature>Parquet</feature>
+    </features>
+  </property>
+  <property>
+    <id>TEST-CEN-004</id>
+    <date>2026-04-25</date>
+    <ref>TEST-CEN-004</ref>
+    <type>loft</type>
+    <town>Centro</town>
+    <province>Madrid</province>
+    <country>Spain</country>
+    <price>2200</price>
+    <currency>EUR</currency>
+    <price_freq>month</price_freq>
+    <beds>1</beds>
+    <baths>1</baths>
+    <surface_area><built>70</built></surface_area>
+    <title>
+      <es>Loft industrial en Malasaña</es>
+      <en>Industrial loft in Malasaña</en>
+    </title>
+    <desc>
+      <es>Loft de diseño en pleno Malasaña. Techos altos de 4 metros, ladrillo visto, grandes ventanales. Zona de estar diáfana con altillo dormitorio. Cerca de la plaza del Dos de Mayo y metro Tribunal.</es>
+      <en>Designer loft in the heart of Malasaña. 4-meter high ceilings, exposed brick, large windows. Open-plan living area with mezzanine bedroom. Near Plaza del Dos de Mayo and Tribunal metro.</en>
+    </desc>
+    <images>
+      <image>
+        <url>https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=800</url>
+      </image>
+    </images>
+    <location>
+      <latitude>40.4260</latitude>
+      <longitude>-3.7020</longitude>
+    </location>
+    <features>
+      <feature>Techos altos</feature>
+      <feature>Ladrillo visto</feature>
+      <feature>Diáfano</feature>
+    </features>
+  </property>
+  <property>
+    <id>TEST-SAL-005</id>
+    <date>2026-04-25</date>
+    <ref>TEST-SAL-005</ref>
+    <type>piso</type>
+    <town>Salamanca</town>
+    <province>Madrid</province>
+    <country>Spain</country>
+    <price>450000</price>
+    <currency>EUR</currency>
+    <price_freq>sale</price_freq>
+    <beds>3</beds>
+    <baths>2</baths>
+    <surface_area><built>120</built></surface_area>
+    <title>
+      <es>Piso señorial en calle Serrano</es>
+      <en>Stately apartment on Serrano street</en>
+    </title>
+    <desc>
+      <es>Magnífico piso de 3 habitaciones en la milla de oro. Techos con molduras, suelos de mármol, dos baños completos. Salón de 30m² con balcón a Serrano. Trastero y plaza de garaje opcionales. Finca regia con portero 24h.</es>
+      <en>Magnificent 3-bedroom apartment on the golden mile. Molded ceilings, marble floors, two full bathrooms. 30m² living room with balcony to Serrano. Optional storage and parking. Grand building with 24h doorman.</en>
+    </desc>
+    <images>
+      <image>
+        <url>https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800</url>
+      </image>
+    </images>
+    <location>
+      <latitude>40.4310</latitude>
+      <longitude>-3.6850</longitude>
+    </location>
+    <features>
+      <feature>Portero 24h</feature>
+      <feature>Balcón</feature>
+      <feature>Mármol</feature>
+      <feature>Garaje opcional</feature>
+    </features>
+  </property>
+</root>
