@@ -969,21 +969,36 @@
   <div class="hero-visual">
     <svg class="mobius-svg" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Möbius strip illustration representing continuous AI-powered lead flow">
       <defs>
-        <!-- Left lobe: brightest at crossing (right side), fades to dark at left tip -->
-        <linearGradient id="lobeLeft" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%"   stop-color="#d4784a" stop-opacity="0.95"/>
-          <stop offset="55%"  stop-color="#c4622d" stop-opacity="0.88"/>
-          <stop offset="100%" stop-color="#9a4820" stop-opacity="0.58"/>
+        <!-- Left arm: face-on and wide. Warm amber shimmer near crossing, darker at tip. -->
+        <linearGradient id="leftColor" x1="100%" y1="0%" x2="0%" y2="0%">
+          <stop offset="0%"   stop-color="#e8a235" stop-opacity="0.90"/>
+          <stop offset="28%"  stop-color="#c4622d" stop-opacity="0.92"/>
+          <stop offset="70%"  stop-color="#9a4820" stop-opacity="0.80"/>
+          <stop offset="100%" stop-color="#7a3518" stop-opacity="0.62"/>
         </linearGradient>
-        <!-- Right lobe: medium at crossing, darker toward right tip (behind) -->
-        <linearGradient id="lobeRight" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stop-color="#c4622d" stop-opacity="0.70"/>
-          <stop offset="55%"  stop-color="#9a4820" stop-opacity="0.58"/>
-          <stop offset="100%" stop-color="#6e2c10" stop-opacity="0.38"/>
+        <!-- Right arm: edge-on and behind. Darker throughout. -->
+        <linearGradient id="rightColor" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#c4622d" stop-opacity="0.62"/>
+          <stop offset="55%"  stop-color="#8a3e1a" stop-opacity="0.50"/>
+          <stop offset="100%" stop-color="#5a2810" stop-opacity="0.32"/>
         </linearGradient>
-        <!-- Tight radial glow at the crossing point only -->
+        <!-- Surface shading: dark at ribbon edges, open in the middle.
+             Simulates a curved 3D ribbon surface catching light in the centre. -->
+        <linearGradient id="leftShade" x1="0" y1="136" x2="0" y2="226" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#0f0d0b" stop-opacity="0.38"/>
+          <stop offset="28%"  stop-color="#0f0d0b" stop-opacity="0"/>
+          <stop offset="72%"  stop-color="#0f0d0b" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#0f0d0b" stop-opacity="0.28"/>
+        </linearGradient>
+        <linearGradient id="rightShade" x1="0" y1="164" x2="0" y2="188" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#0f0d0b" stop-opacity="0.42"/>
+          <stop offset="38%"  stop-color="#0f0d0b" stop-opacity="0"/>
+          <stop offset="62%"  stop-color="#0f0d0b" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#0f0d0b" stop-opacity="0.34"/>
+        </linearGradient>
+        <!-- Tight glow only at the crossing — that is where the magic happens -->
         <radialGradient id="crossGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stop-color="#c4622d" stop-opacity="0.30"/>
+          <stop offset="0%"   stop-color="#c4622d" stop-opacity="0.32"/>
           <stop offset="100%" stop-color="#c4622d" stop-opacity="0"/>
         </radialGradient>
         <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -992,32 +1007,45 @@
         </filter>
       </defs>
 
-      <!-- Glow focused at crossing point only, not the whole strip -->
-      <ellipse cx="240" cy="181" rx="58" ry="36" fill="url(#crossGlow)"/>
+      <!-- Crossing glow — tight, focused -->
+      <ellipse cx="241" cy="181" rx="56" ry="34" fill="url(#crossGlow)"/>
 
-      <!-- RIGHT LOBE — behind at crossing, drawn first -->
-      <path d="M 228 167
-               C 286 144, 360 136, 414 163
-               C 436 175, 436 187, 414 199
-               C 360 224, 286 218, 228 195
+      <!-- RIGHT ARM — behind at crossing. Narrow tip (~22 px) = edge-on in 3D space. -->
+      <path d="M 250 171
+               C 296 157, 374 150, 412 164
+               C 428 170, 428 186, 412 187
+               C 374 194, 296 190, 250 191
                Z"
-            fill="url(#lobeRight)"/>
-
-      <!-- LEFT LOBE — in front at crossing, drawn on top of right lobe -->
-      <path d="M 252 167
-               C 194 144, 120 136, 66 163
-               C 44 175, 44 187, 66 199
-               C 120 224, 194 218, 252 195
+            fill="url(#rightColor)"/>
+      <path d="M 250 171
+               C 296 157, 374 150, 412 164
+               C 428 170, 428 186, 412 187
+               C 374 194, 296 190, 250 191
                Z"
-            fill="url(#lobeLeft)"/>
+            fill="url(#rightShade)"/>
 
-      <!-- Depth shadow line — thin dark edge where left lobe passes over right -->
-      <path d="M 252 167 C 260 173, 260 189, 252 195"
-            stroke="rgba(8,6,4,0.80)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- LEFT ARM — in front at crossing. Wide tip (~52 px) = face-on in 3D space.
+           The width asymmetry (52 px vs 22 px) communicates the Möbius twist. -->
+      <path d="M 252 171
+               C 198 151, 124 136, 72 150
+               C 48 158, 42 178, 50 200
+               C 80 224, 164 226, 252 191
+               Z"
+            fill="url(#leftColor)"/>
+      <path d="M 252 171
+               C 198 151, 124 136, 72 150
+               C 48 158, 42 178, 50 200
+               C 80 224, 164 226, 252 191
+               Z"
+            fill="url(#leftShade)"/>
 
-      <!-- Highlight stripe on the front lobe upper surface -->
-      <path d="M 248 173 C 194 157, 120 153, 74 169"
-            stroke="rgba(232,162,53,0.52)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <!-- Depth shadow line at crossing — the single cue that reads left arm over right -->
+      <path d="M 252 171 C 261 177, 261 187, 252 191"
+            stroke="rgba(6,4,2,0.84)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+      <!-- Highlight on upper face of left arm -->
+      <path d="M 248 177 C 194 160, 122 154, 78 165"
+            stroke="rgba(232,162,53,0.55)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
 
       <!-- Animated particles -->
       <circle r="4" fill="#e8a235" filter="url(#glow)" opacity="0.9">
@@ -1031,14 +1059,15 @@
         </animateMotion>
       </circle>
 
-      <!-- Particle path: top edge left to right, around right tip, bottom edge right to left -->
+      <!-- Particle path: top edge L→R, around tight right tip, bottom edge R→L, around wide left tip -->
       <path id="mobius-path"
-            d="M 66 181
-               C 88 163, 168 149, 240 166
-               C 312 149, 392 163, 414 181
-               C 436 191, 436 201, 414 201
-               C 392 219, 312 219, 240 197
-               C 168 219, 88 203, 66 181
+            d="M 68 181
+               C 90 162, 170 149, 241 167
+               C 312 149, 392 162, 412 177
+               C 430 184, 430 194, 416 194
+               C 390 198, 310 195, 241 194
+               C 172 220, 90 216, 60 197
+               C 44 188, 46 177, 68 181
                Z"
             fill="none"/>
 
@@ -1052,18 +1081,18 @@
       <rect x="410" y="319" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
       <rect x="429" y="300" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
 
-      <!-- Waypoint dots — approximate, will pin after getPointAtLength -->
-      <circle cx="66"  cy="181" r="4.5" fill="rgba(196,98,45,0.15)"/>
-      <circle cx="200" cy="154" r="4.5" fill="rgba(196,98,45,0.42)"/>
-      <circle cx="360" cy="149" r="4.5" fill="rgba(196,98,45,0.70)"/>
-      <circle cx="414" cy="181" r="4.5" fill="rgba(196,98,45,1.00)"/>
+      <!-- Waypoint dots — will pin to exact path positions after preview -->
+      <circle cx="68"  cy="181" r="4.5" fill="rgba(196,98,45,0.15)"/>
+      <circle cx="190" cy="155" r="4.5" fill="rgba(196,98,45,0.42)"/>
+      <circle cx="370" cy="151" r="4.5" fill="rgba(196,98,45,0.70)"/>
+      <circle cx="412" cy="177" r="4.5" fill="rgba(196,98,45,1.00)"/>
 
-      <!-- Waypoint labels — full spectrum 0.18 to 1.0, arcing around the strip -->
+      <!-- Labels arc around the strip: bottom-left → top-left → top-right → bottom-right -->
       <g font-family="'DM Mono', monospace" font-size="9">
-        <text x="30"  y="236" fill="rgba(196,98,45,0.18)" letter-spacing="2">LEAD IN</text>
-        <text x="148" y="138" fill="rgba(196,98,45,0.45)" letter-spacing="1.4">YAVE RESPONDS</text>
-        <text x="306" y="136" fill="rgba(196,98,45,0.75)" letter-spacing="2">VIEWING SET</text>
-        <text x="376" y="236" fill="rgba(196,98,45,1.00)" letter-spacing="2">DEAL CLOSED</text>
+        <text x="22"  y="238" fill="rgba(196,98,45,0.18)" letter-spacing="2">LEAD IN</text>
+        <text x="140" y="128" fill="rgba(196,98,45,0.45)" letter-spacing="1.4">YAVE RESPONDS</text>
+        <text x="308" y="126" fill="rgba(196,98,45,0.75)" letter-spacing="2">VIEWING SET</text>
+        <text x="370" y="238" fill="rgba(196,98,45,1.00)" letter-spacing="2">DEAL CLOSED</text>
       </g>
     </svg>
   </div>
