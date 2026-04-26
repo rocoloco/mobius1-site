@@ -1,375 +1,1408 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobius 1 — AI-Powered Communication for Real Estate</title>
-  <meta name="description" content="Mobius 1 builds Yave, an AI platform that helps real estate agencies respond to leads instantly via WhatsApp.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobius 1 — AI-Powered Communication for Real Estate</title>
+<meta name="description" content="Mobius 1 builds Yave — an AI platform that helps real estate agencies in Spain respond to property inquiries via WhatsApp in seconds, not hours.">
+<meta property="og:title" content="Mobius 1 — AI-Powered Communication for Real Estate">
+<meta property="og:description" content="AI that responds to property leads via WhatsApp in under 30 seconds. Built for real estate agencies in Spain.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #faf9f7;
-      --surface: #ffffff;
-      --border: #dad4c8;
-      --border-light: #eee9df;
-      --text: #000000;
-      --text-muted: #9f9b93;
-      --text-secondary: #55534e;
-      --matcha-300: #84e7a5;
-      --matcha-600: #078a52;
-      --matcha-800: #02492a;
-      --slushie-500: #3bd3fd;
-      --slushie-800: #0089ad;
-      --lemon-500: #fbbd41;
-      --lemon-700: #d08a11;
-      --ube-300: #c1b0ff;
-      --ube-800: #43089f;
-      --pomegranate-400: #fc7981;
-      --blueberry-800: #01418d;
-      --shadow: rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px;
-      --shadow-hover: rgb(0,0,0) -7px 7px;
-      --radius-sm: 12px;
-      --radius-md: 24px;
-      --radius-lg: 40px;
-      --radius-pill: 1584px;
-    }
+  :root {
+    --ink: #0f0d0b;
+    --ink-2: #1c1a17;
+    --ink-3: #282420;
+    --paper: #f5f0e8;
+    --paper-2: #ede8de;
+    --paper-3: #e0d9cc;
+    --terra: #c4622d;
+    --terra-light: #d4784a;
+    --terra-dark: #9a4820;
+    --amber: #e8a235;
+    --gold: #c9943a;
+    --muted: #9a8f85;
+    --muted-2: #6a625a;
+    --border: rgba(196, 98, 45, 0.18);
+    --border-subtle: rgba(15, 13, 11, 0.1);
+    --wa-green: #25D366;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --mono: 'DM Mono', 'Courier New', monospace;
+    --sans: 'Instrument Sans', system-ui, sans-serif;
+  }
 
-    body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+  html { scroll-behavior: smooth; }
 
-    a { color: var(--ube-800); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-    /* Nav */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(250, 249, 247, 0.85);
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 4rem;
+    background: rgba(15, 13, 11, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 28px; height: 28px;
+  }
+  .nav-logo-text {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--paper);
+    letter-spacing: 0.03em;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--paper); }
+
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    text-decoration: none;
+    border: 0.5px solid var(--terra);
+    padding: 0.5rem 1.2rem;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover {
+    background: var(--terra);
+    color: var(--paper);
+  }
+
+  /* Hamburger */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--muted);
+    transition: all 0.25s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 4rem;
+    gap: 4rem;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    max-width: 560px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    margin-bottom: 2rem;
+    border: 0.5px solid var(--border);
+    padding: 0.35rem 0.9rem;
+    background: rgba(196, 98, 45, 0.07);
+  }
+
+  .hero-eyebrow-dot {
+    width: 5px; height: 5px;
+    background: var(--terra);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--terra-light);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-sub strong {
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--terra);
+    color: var(--paper);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.85rem 2rem;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: var(--terra-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--paper); }
+
+  /* Möbius strip animation */
+  .hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .mobius-svg {
+    width: 100%;
+    max-width: 480px;
+    filter: drop-shadow(0 0 60px rgba(196, 98, 45, 0.15));
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    border-top: 0.5px solid var(--border-subtle);
+    border-bottom: 0.5px solid var(--border-subtle);
+    background: rgba(28, 26, 23, 0.6);
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-item {
+    flex: 1;
+    padding: 1.8rem 3rem;
+    border-right: 0.5px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    font-weight: 300;
+    color: var(--paper);
+    line-height: 1;
+  }
+  .stat-number span {
+    color: var(--terra-light);
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    margin-bottom: 4rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.5px solid var(--terra);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  /* ── PRODUCT SECTION ── */
+  #product {
+    padding: 8rem 4rem;
+    background: var(--ink-2);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-subtle);
+    border: 1px solid var(--border-subtle);
+    margin-top: 4rem;
+  }
+
+  .feature-card {
+    background: var(--ink-2);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .feature-card:hover {
+    background: var(--ink-3);
+  }
+
+  .feature-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--terra) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .feature-card:hover::after { opacity: 1; }
+
+  .feature-icon {
+    width: 40px; height: 40px;
+    margin-bottom: 1.5rem;
+    color: var(--terra);
+  }
+
+  .feature-num {
+    position: absolute;
+    top: 1.5rem; right: 2rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted-2);
+    letter-spacing: 0.08em;
+  }
+
+  h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .feature-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── HOW IT WORKS ── */
+  #how {
+    padding: 8rem 4rem;
+    background: var(--ink);
+  }
+
+  .how-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 0.5px solid var(--border-subtle);
+    position: relative;
+    cursor: default;
+    transition: all 0.2s;
+  }
+  .step:first-child { padding-top: 0; }
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--terra);
+    padding-top: 4px;
+  }
+
+  .step-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* WhatsApp mockup */
+  .wa-mockup {
+    background: var(--ink-3);
+    border: 0.5px solid var(--border-subtle);
+    border-radius: 2px;
+    overflow: hidden;
+    font-size: 0.85rem;
+  }
+
+  .wa-header {
+    background: rgba(37, 211, 102, 0.12);
+    border-bottom: 0.5px solid rgba(37, 211, 102, 0.2);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .wa-avatar {
+    width: 34px; height: 34px;
+    background: var(--terra);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    color: var(--paper);
+    flex-shrink: 0;
+  }
+
+  .wa-name {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--paper);
+  }
+  .wa-status {
+    font-size: 0.72rem;
+    color: var(--wa-green);
+    font-family: var(--mono);
+  }
+
+  .wa-messages {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: 280px;
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    border-radius: 2px 12px 12px 2px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: msgIn 0.4s ease forwards;
+  }
+
+  .msg-time {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+    display: block;
+  }
+
+  @keyframes msgIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .msg.in {
+    background: rgba(255,255,255,0.06);
+    color: var(--paper);
+    border-radius: 2px 12px 12px 12px;
+    align-self: flex-start;
+  }
+
+  .msg.out {
+    background: rgba(37, 211, 102, 0.15);
+    color: var(--paper);
+    border-radius: 12px 2px 12px 12px;
+    align-self: flex-end;
+    border: 0.5px solid rgba(37, 211, 102, 0.2);
+  }
+
+  .msg.ai-badge::before {
+    content: 'Yave AI';
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    margin-bottom: 0.3rem;
+  }
+
+  .msg:nth-child(1) { animation-delay: 0.3s; }
+  .msg:nth-child(2) { animation-delay: 0.9s; }
+  .msg:nth-child(3) { animation-delay: 1.8s; }
+  .msg:nth-child(4) { animation-delay: 2.8s; }
+  .msg:nth-child(5) { animation-delay: 3.8s; }
+
+  /* ── PARTNERS ── */
+  #partners {
+    padding: 8rem 4rem;
+    background: var(--ink-2);
+  }
+
+  .partners-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .partners-text p {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .partners-text p strong {
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  .partner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(196, 98, 45, 0.1);
+    border: 0.5px solid var(--border);
+    padding: 0.8rem 1.4rem;
+    margin-top: 1rem;
+  }
+
+  .partner-badge-dot {
+    width: 8px; height: 8px;
+    background: var(--terra);
+    border-radius: 50%;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  .partner-badge-text {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-light);
+  }
+
+  .offering-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border-subtle);
+    border: 0.5px solid var(--border-subtle);
+  }
+
+  .offering-item {
+    background: var(--ink-2);
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .offering-check {
+    width: 18px; height: 18px;
+    background: rgba(196, 98, 45, 0.15);
+    border: 0.5px solid var(--terra);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .offering-check svg { width: 10px; height: 10px; color: var(--terra); }
+
+  .offering-text {
+    font-size: 0.9rem;
+    color: var(--paper);
+    line-height: 1.5;
+  }
+
+  .offering-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    padding: 8rem 4rem;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contact::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(196, 98, 45, 0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .contact-value {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--paper);
+  }
+
+  .contact-value a {
+    color: var(--terra-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-value a:hover { color: var(--amber); }
+
+  .contact-card {
+    background: var(--ink-2);
+    border: 0.5px solid var(--border-subtle);
+    padding: 3rem;
+  }
+
+  .contact-card-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--paper);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-card-sub {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .contact-action {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    border: 0.5px solid var(--border-subtle);
+    text-decoration: none;
+    transition: all 0.2s;
+    background: transparent;
+  }
+
+  .contact-link:hover {
+    border-color: var(--terra);
+    background: rgba(196, 98, 45, 0.06);
+  }
+
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-link-icon.email { background: rgba(196, 98, 45, 0.15); }
+  .contact-link-icon.wa { background: rgba(37, 211, 102, 0.12); }
+
+  .contact-link-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .contact-link-value {
+    font-size: 0.9rem;
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 0.5px solid var(--border-subtle);
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-left {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--muted-2);
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .footer-badge {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+  .fade-up:nth-child(5) { transition-delay: 0.4s; }
+  .fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      background: rgba(15, 13, 11, 0.97);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
+      -webkit-backdrop-filter: blur(12px);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.5rem 2rem;
+      gap: 1.5rem;
+      border-bottom: 0.5px solid var(--border);
     }
-    .nav-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .logo { font-weight: 700; font-size: 20px; letter-spacing: -0.8px; }
-    .logo span { color: var(--matcha-600); }
-    .nav-links { display: flex; gap: 32px; }
-    .nav-links a {
-      color: var(--text-secondary); font-size: 15px; font-weight: 500;
-      text-decoration: none; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .nav-links.open { display: flex; }
+    .nav-hamburger { display: flex; }
 
-    /* Hero */
-    .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 80px;
-    }
-    .hero-content { max-width: 760px; }
-    .badge {
-      display: inline-block; padding: 8px 20px; border-radius: var(--radius-pill);
-      background: var(--surface); border: 1px solid var(--border);
-      font-size: 13px; color: var(--text-secondary); margin-bottom: 32px;
-      font-weight: 600; letter-spacing: 1.08px; text-transform: uppercase;
-      box-shadow: var(--shadow);
-    }
-    h1 {
-      font-size: clamp(40px, 6vw, 72px); font-weight: 700;
-      letter-spacing: -2.8px; line-height: 1.0; margin-bottom: 24px;
-    }
-    .hero p {
-      font-size: 20px; color: var(--text-muted); max-width: 540px;
-      margin: 0 auto 40px; line-height: 1.5; font-weight: 400;
-    }
-    .cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-    /* Buttons — Clay style */
-    .btn {
-      display: inline-block; padding: 14px 32px; font-size: 16px;
-      font-weight: 500; cursor: pointer; border: none;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      text-decoration: none; letter-spacing: -0.16px;
-    }
-    .btn-primary {
-      background: var(--text); color: #fff; border-radius: var(--radius-pill);
-      box-shadow: var(--shadow);
-    }
-    .btn-primary:hover {
-      transform: rotateZ(-4deg) translateY(-4px);
-      box-shadow: var(--shadow-hover);
-      background: var(--matcha-800);
-      text-decoration: none;
-    }
-    .btn-ghost {
-      background: transparent; color: var(--text);
-      border: 1px solid var(--border); border-radius: var(--radius-pill);
-    }
-    .btn-ghost:hover {
-      transform: rotateZ(-4deg) translateY(-4px);
-      box-shadow: var(--shadow-hover);
-      background: var(--ube-800); color: #fff; border-color: var(--ube-800);
-      text-decoration: none;
-    }
-
-    /* Sections */
-    section { padding: 100px 24px; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: 12px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1.08px; color: var(--matcha-600); margin-bottom: 16px;
-    }
-    h2 {
-      font-size: clamp(32px, 4vw, 48px); font-weight: 700;
-      letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px;
-    }
-    .section-desc {
-      font-size: 18px; color: var(--text-muted); max-width: 560px;
-      line-height: 1.6; font-weight: 400; letter-spacing: -0.36px;
-    }
-
-    /* Features */
-    .features-section { border-top: 1px solid var(--border); }
-    .feature-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px; margin-top: 48px;
-    }
-    .feature-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-md); padding: 32px;
-      box-shadow: var(--shadow);
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: rgba(0,0,0,0.12) 0px 4px 12px;
-    }
-    .feature-icon {
-      width: 48px; height: 48px; border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin-bottom: 20px;
-    }
-    .feature-card h3 {
-      font-size: 18px; font-weight: 600; margin-bottom: 8px;
-      letter-spacing: -0.4px;
-    }
-    .feature-card p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
-
-    /* How It Works — Matcha section */
-    .how-section {
-      background: var(--matcha-800); border-radius: var(--radius-lg);
-      margin: 0 24px; padding: 80px 48px;
-    }
-    .steps { margin-top: 48px; display: flex; flex-direction: column; gap: 20px; }
-    .step {
-      display: flex; gap: 24px; align-items: flex-start;
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius-md); padding: 28px;
-    }
-    .step-num {
-      flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
-      background: var(--matcha-300); color: var(--matcha-800);
-      font-weight: 700; font-size: 18px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; color: #fff; letter-spacing: -0.4px; }
-    .step p { font-size: 15px; color: var(--matcha-300); line-height: 1.6; }
-
-    /* Partners */
-    .partners-section { border-top: 1px solid var(--border); }
-    .partner-card {
-      margin-top: 32px; padding: 32px; background: var(--surface);
-      border: 1px dashed var(--border); border-radius: var(--radius-md);
-      font-size: 16px; color: var(--text-secondary); line-height: 1.7;
-      box-shadow: var(--shadow);
-    }
-
-    /* Contact */
-    .contact-section { border-top: 1px solid var(--border); }
-    .contact-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px; margin-top: 40px;
-    }
-    .contact-item {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 24px;
-      box-shadow: var(--shadow);
-    }
-    .contact-item h3 {
-      font-size: 12px; font-weight: 600; margin-bottom: 8px;
-      color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.08px;
-    }
-    .contact-item p { font-size: 15px; line-height: 1.5; }
-
-    /* Footer */
-    footer {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); margin: 24px;
-      padding: 32px; text-align: center;
-      font-size: 14px; color: var(--text-muted);
-    }
-
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .step { flex-direction: column; }
-      .feature-grid { grid-template-columns: 1fr; }
-      .how-section { margin: 0; border-radius: 0; padding: 60px 24px; }
-      footer { margin: 0; border-radius: 0; }
-    }
+    #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 4rem; }
+    .hero-visual { display: none; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat-item { min-width: 50%; }
+    #product, #how, #partners, #contact { padding: 5rem 1.5rem; }
+    .product-grid { grid-template-columns: 1fr; }
+    .how-layout, .partners-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    .divider { margin: 0 1.5rem; }
+  }
 </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <div class="logo">Mobius <span>1</span></div>
-      <div class="nav-links">
-        <a href="#product">Product</a>
-        <a href="#how">How It Works</a>
-        <a href="#partners">Partners</a>
-        <a href="#contact">Contact</a>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4 C28 4, 36 10, 36 20 C36 30, 28 36, 20 36 C12 36, 4 30, 4 20"
+        stroke="#c4622d" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M4 20 C4 10, 12 4, 20 4"
+        stroke="#e8a235" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="2 3"/>
+      <circle cx="20" cy="20" r="3.5" fill="#c4622d" opacity="0.8"/>
+    </svg>
+    <span class="nav-logo-text">Mobius 1</span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#product">Product</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <a href="mailto:jrosario@mobius1.io" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-lines">
+    <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="0" y1="200" x2="1200" y2="200" stroke="rgba(196,98,45,0.05)" stroke-width="1"/>
+      <line x1="0" y1="400" x2="1200" y2="400" stroke="rgba(196,98,45,0.04)" stroke-width="1"/>
+      <line x1="0" y1="600" x2="1200" y2="600" stroke="rgba(196,98,45,0.03)" stroke-width="1"/>
+      <line x1="300" y1="0" x2="300" y2="800" stroke="rgba(196,98,45,0.04)" stroke-width="1"/>
+      <line x1="600" y1="0" x2="600" y2="800" stroke="rgba(196,98,45,0.03)" stroke-width="1"/>
+      <line x1="900" y1="0" x2="900" y2="800" stroke="rgba(196,98,45,0.03)" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      Powered by Yave AI
+    </div>
+    <h1>Instant lead response<br>for <em>real estate</em></h1>
+    <p class="hero-sub">
+      Mobius 1 builds <strong>Yave</strong> — an AI platform that helps real estate agencies in Spain respond to property inquiries via WhatsApp in <strong>seconds, not hours.</strong>
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:jrosario@mobius1.io" class="btn-primary">
+        Get in touch
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#how" class="btn-secondary">
+        See how it works
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M6 2v8M3 7l3 3 3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <svg class="mobius-svg" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Möbius strip illustration representing continuous AI-powered lead flow">
+      <defs>
+        <linearGradient id="mobiusGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#c4622d" stop-opacity="0.9"/>
+          <stop offset="50%" stop-color="#e8a235" stop-opacity="0.7"/>
+          <stop offset="100%" stop-color="#c4622d" stop-opacity="0.3"/>
+        </linearGradient>
+        <linearGradient id="mobiusGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#9a4820" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#c4622d" stop-opacity="0.8"/>
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <ellipse cx="240" cy="180" rx="180" ry="120" fill="rgba(196,98,45,0.04)"/>
+
+      <path d="M 80 210
+               C 80 210, 120 240, 170 235
+               C 220 230, 260 200, 240 180
+               C 220 160, 170 165, 120 185
+               C 90 198, 80 210, 80 210 Z"
+            fill="rgba(40,36,32,0.8)" stroke="rgba(196,98,45,0.2)" stroke-width="0.5"/>
+
+      <path d="M 80 180
+               C 100 155, 160 140, 220 160
+               C 280 180, 330 210, 360 195
+               C 390 180, 400 155, 380 145
+               C 360 135, 310 150, 260 170
+               C 210 190, 160 200, 120 185
+               C 90 175, 80 180, 80 180 Z"
+            fill="url(#mobiusGrad1)" opacity="0.85"/>
+
+      <path d="M 80 180
+               C 100 175, 160 190, 220 175
+               C 280 160, 330 140, 380 145
+               C 390 148, 395 155, 390 165
+               C 380 180, 330 195, 280 200
+               C 230 205, 170 195, 120 185
+               C 90 178, 80 180, 80 180 Z"
+            fill="url(#mobiusGrad2)" opacity="0.6"/>
+
+      <path d="M 100 178 C 160 162, 240 170, 320 165 C 350 163, 370 158, 378 152"
+            stroke="rgba(232, 162, 53, 0.5)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+      <circle r="4" fill="#e8a235" filter="url(#glow)" opacity="0.9">
+        <animateMotion dur="6s" repeatCount="indefinite">
+          <mpath href="#mobius-path"/>
+        </animateMotion>
+      </circle>
+      <circle r="2.5" fill="#c4622d" opacity="0.7">
+        <animateMotion dur="6s" begin="2s" repeatCount="indefinite">
+          <mpath href="#mobius-path"/>
+        </animateMotion>
+      </circle>
+
+      <path id="mobius-path" d="M 80 180
+          C 130 155, 200 150, 260 170
+          C 320 190, 370 205, 380 190
+          C 395 170, 370 145, 320 145
+          C 270 145, 210 165, 160 185
+          C 110 205, 80 210, 80 210
+          C 80 210, 80 195, 80 180 Z"
+        fill="none"/>
+
+      <g font-family="'DM Mono', monospace" fill="rgba(196,98,45,0.7)" font-size="9" letter-spacing="2">
+        <text x="88" y="233">LEAD IN</text>
+        <text x="332" y="133">DEAL CLOSED</text>
+      </g>
+
+      <circle cx="110" cy="225" r="3" fill="rgba(196,98,45,0.5)"/>
+      <circle cx="370" cy="145" r="3" fill="rgba(196,98,45,0.5)"/>
+
+      <rect x="30" y="30" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
+      <rect x="30" y="30" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
+      <rect x="410" y="30" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
+      <rect x="429" y="30" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
+      <rect x="30" y="319" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
+      <rect x="30" y="300" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
+      <rect x="410" y="319" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
+      <rect x="429" y="300" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number"><span>&lt;</span>30<span>s</span></div>
+    <div class="stat-label">First response time</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">24<span>/7</span></div>
+    <div class="stat-label">Always-on AI availability</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">2<span>x</span></div>
+    <div class="stat-label">Languages — ES & EN</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number"><span>&lt;</span>1<span>h</span></div>
+    <div class="stat-label">Go-live setup time</div>
+  </div>
+</div>
+
+<!-- PRODUCT -->
+<section id="product">
+  <div class="section-header fade-up">
+    <div class="section-tag">Product</div>
+    <h2>What <em>Yave</em> does</h2>
+  </div>
+  <div class="product-grid">
+    <div class="feature-card fade-up">
+      <span class="feature-num">01</span>
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M8 12h24M8 19h16M8 26h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="4" y="6" width="32" height="28" rx="3" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="32" cy="32" r="6" fill="rgba(15,13,11,1)" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M30 32l1.5 1.5L34 30" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      <h3>Instant WhatsApp response</h3>
+      <p class="feature-desc">Leads receive a reply in seconds, not hours. Yave handles the initial conversation naturally in Spanish or English — indistinguishable from a skilled agent.</p>
+    </div>
+
+    <div class="feature-card fade-up">
+      <span class="feature-num">02</span>
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20 6 L34 14 L34 26 L20 34 L6 26 L6 14 Z" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="20" cy="20" r="5" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M20 15v-5M20 30v-5M15 20h-5M30 20h-5" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      <h3>Natural language property search</h3>
+      <p class="feature-desc">AI searches your inventory using natural language. "2 bedroom in Salamanca under €2,000" just works — no dropdowns, no filters.</p>
+    </div>
+
+    <div class="feature-card fade-up">
+      <span class="feature-num">03</span>
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="6" y="8" width="28" height="26" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M6 16h28" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M14 8V6M26 8V6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="12" y="21" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.2" fill="rgba(196,98,45,0.15)"/>
+      </svg>
+      <h3>Automated viewing booking</h3>
+      <p class="feature-desc">Checks agent availability via Google Calendar and books viewings automatically. No back-and-forth email chains required.</p>
+    </div>
+
+    <div class="feature-card fade-up">
+      <span class="feature-num">04</span>
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M20 12v8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="2" fill="currentColor"/>
+        <path d="M8 8l3 3M32 8l-3 3M8 32l3-3M32 32l-3-3" stroke="currentColor" stroke-width="1" opacity="0.4" stroke-linecap="round"/>
+      </svg>
+      <h3>Smart agent notifications</h3>
+      <p class="feature-desc">Agents are notified only when something truly actionable happens — a hot lead, a qualified buyer, a viewing request. Zero noise.</p>
+    </div>
+
+    <div class="feature-card fade-up">
+      <span class="feature-num">05</span>
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M20 6v28M6 20h28" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+        <path d="M9 13c3-2 7-3 11-3s8 1 11 3M9 27c3 2 7 3 11 3s8-1 11-3" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+        <ellipse cx="20" cy="20" rx="6" ry="14" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <h3>Neighbourhood intelligence</h3>
+      <p class="feature-desc">Answers questions about local schools, transport, restaurants, and commute times using live data. Buyers get the full picture instantly.</p>
+    </div>
+
+    <div class="feature-card fade-up">
+      <span class="feature-num">06</span>
+      <svg class="feature-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M8 30l8-10 6 6 5-7 7 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="4" y="6" width="32" height="28" rx="2" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="32" cy="12" r="4" stroke="currentColor" stroke-width="1.2" fill="rgba(196,98,45,0.2)"/>
+        <path d="M30.5 12l1 1 2-2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      <h3>Property feed sync</h3>
+      <p class="feature-desc">Automatically syncs listings from Kyero, Idealista, and other portals. Your AI always has the most current inventory — no manual updates.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-header fade-up">
+    <div class="section-tag">Process</div>
+    <h2>From zero to live <em>in under an hour</em></h2>
+  </div>
+  <div class="how-layout">
+    <div class="steps-list">
+      <div class="step fade-up">
+        <div class="step-num">01 /</div>
+        <div>
+          <div class="step-title">We set up your WhatsApp</div>
+          <p class="step-desc">We provision a dedicated WhatsApp Business number for your agency with your brand name as the display name. Nothing technical required from you.</p>
+        </div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">02 /</div>
+        <div>
+          <div class="step-title">Sync your properties</div>
+          <p class="step-desc">Connect your property feed (Kyero XML or similar) and we import your listings with photos, descriptions, and location data automatically.</p>
+        </div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">03 /</div>
+        <div>
+          <div class="step-title">Add a button to your site</div>
+          <p class="step-desc">Place a WhatsApp button on your website. When leads click it, they immediately start a conversation with your AI assistant.</p>
+        </div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">04 /</div>
+        <div>
+          <div class="step-title">Yave handles the rest</div>
+          <p class="step-desc">AI qualifies leads, searches properties, answers questions, and books viewings. Your agents focus on closing deals — not chasing enquiries.</p>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <section class="hero">
-    <div class="hero-content">
-      <div class="badge">Powered by Yave AI</div>
-      <h1>Instant lead response for real estate</h1>
-      <p>Mobius 1 builds Yave — an AI platform that helps real estate agencies in Spain respond to property inquiries via WhatsApp in seconds, not hours.</p>
-      <div class="cta-group">
-        <a href="mailto:jrosario@mobius1.io" class="btn btn-primary">Get in Touch</a>
-        <a href="#how" class="btn btn-ghost">Learn More →</a>
+    <!-- WhatsApp mockup -->
+    <div class="wa-mockup fade-up">
+      <div class="wa-header">
+        <div class="wa-avatar">Y</div>
+        <div>
+          <div class="wa-name">Yave — Inmobiliaria Norte</div>
+          <div class="wa-status">● online</div>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="features-section" id="product">
-    <div class="container">
-      <div class="section-label">Product</div>
-      <h2>What Yave Does</h2>
-      <p class="section-desc">AI-powered WhatsApp automation built specifically for real estate agencies in Spain.</p>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--matcha-300);">💬</div>
-          <h3>Instant WhatsApp Response</h3>
-          <p>Leads get a response in seconds, not hours. Yave handles the initial conversation naturally in Spanish or English.</p>
+      <div class="wa-messages">
+        <div class="msg in">
+          Hola! I'm looking for a 2-bed apartment in Salamanca, budget around €1,800/month
+          <span class="msg-time">09:14</span>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--slushie-500);">🏠</div>
-          <h3>Property Search</h3>
-          <p>AI searches your property inventory using natural language. "2 bedroom in Salamanca under 2000" just works.</p>
+        <div class="msg out ai-badge">
+          Hi! I found 4 properties matching your search in Salamanca within your budget. The top result is a bright 2-bed on Calle Velázquez — 85m², renovated kitchen, 5 min walk to metro. Would you like photos and details?
+          <span class="msg-time">09:14</span>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--lemon-500);">📅</div>
-          <h3>Viewing Booking</h3>
-          <p>Checks agent availability via Google Calendar and books viewings automatically. No back-and-forth needed.</p>
+        <div class="msg in">
+          Yes please! And is there good public transport nearby?
+          <span class="msg-time">09:15</span>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--ube-300);">🔔</div>
-          <h3>Agent Notifications</h3>
-          <p>Agents get notified when something actionable happens — a hot lead, a viewing request, a qualified buyer.</p>
+        <div class="msg out ai-badge">
+          Absolutely. The Velázquez metro (line 4) is a 4-min walk, plus 3 bus lines within 200m. Schools: Colegio Sagrado Corazón is 600m away. Shall I book a viewing for this week?
+          <span class="msg-time">09:15</span>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--pomegranate-400);">🗺️</div>
-          <h3>Neighborhood Intelligence</h3>
-          <p>Answers questions about nearby schools, transport, restaurants, and commute times using real-time data.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="background: var(--matcha-300);">🔄</div>
-          <h3>Feed Sync</h3>
-          <p>Automatically syncs your property listings from Kyero, Idealista, and other portals. Always up to date.</p>
+        <div class="msg in">
+          Tomorrow at 5pm works great
+          <span class="msg-time">09:16</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="how-section" id="how">
-    <div class="container">
-      <div class="section-label" style="color: var(--matcha-300);">How It Works</div>
-      <h2 style="color: #fff;">From Zero to Live in Under an Hour</h2>
-      <p class="section-desc" style="color: var(--matcha-300);">Getting started is simple. No technical setup required from the agency.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div>
-            <h3>We Set Up Your WhatsApp</h3>
-            <p>We provision a dedicated WhatsApp number for your agency with your brand name as the display name.</p>
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="section-header fade-up">
+    <div class="section-tag">Partners</div>
+    <h2>Agency <em>partners</em></h2>
+  </div>
+  <div class="partners-layout">
+    <div class="partners-text">
+      <p>We are currently onboarding our <strong>first agency partners in Madrid.</strong> Yave by Mobius 1 provides each partner agency with a complete AI communication stack — fully white-labelled under your brand.</p>
+      <p>Each partner receives a dedicated WhatsApp Business number, AI-powered lead qualification, and automated viewing scheduling — all branded as your agency, not ours.</p>
+      <div class="partner-badge">
+        <div class="partner-badge-dot"></div>
+        <span class="partner-badge-text">Now onboarding Madrid agencies</span>
+      </div>
+    </div>
+    <div class="offering-list fade-up">
+      <div class="offering-item">
+        <div class="offering-check">
+          <svg viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="offering-text">Dedicated WhatsApp Business number</div>
+          <div class="offering-sub">Branded to your agency — your name, your identity</div>
+        </div>
+      </div>
+      <div class="offering-item">
+        <div class="offering-check">
+          <svg viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="offering-text">AI-powered lead qualification</div>
+          <div class="offering-sub">Qualifies budget, timeline, and property requirements automatically</div>
+        </div>
+      </div>
+      <div class="offering-item">
+        <div class="offering-check">
+          <svg viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="offering-text">Automated viewing scheduling</div>
+          <div class="offering-sub">Syncs with your agents' calendars — no double-booking possible</div>
+        </div>
+      </div>
+      <div class="offering-item">
+        <div class="offering-check">
+          <svg viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 5l2.5 2.5L8 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="offering-text">Zero technical setup required</div>
+          <div class="offering-sub">We handle everything — live in under an hour</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <div class="section-tag">Contact</div>
+    <h2>Ready to <em>start</em>?</h2>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-info fade-up">
+      <div class="contact-item">
+        <div class="contact-label">Company</div>
+        <div class="contact-value">Mobius 1 LLC</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Address</div>
+        <div class="contact-value" style="font-size:0.95rem; line-height:1.6;">
+          7901 4th St N STE 300<br>
+          St. Petersburg, FL 33702<br>
+          United States
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">
+          <a href="tel:+18132205994">+1 (813) 220-5994</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">Focus market</div>
+        <div class="contact-value" style="font-size:0.95rem;">Real estate agencies in Spain</div>
+      </div>
+    </div>
+    <div class="contact-card fade-up">
+      <div class="contact-card-title">Get in touch</div>
+      <div class="contact-card-sub">Interested in becoming a partner agency? We'd love to show you Yave in action — no commitment required.</div>
+      <div class="contact-action">
+        <a href="mailto:jrosario@mobius1.io" class="contact-link">
+          <div class="contact-link-icon email">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="#c4622d" stroke-width="1.3"/>
+              <path d="M1 5l7 5 7-5" stroke="#c4622d" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
           </div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
           <div>
-            <h3>Sync Your Properties</h3>
-            <p>Connect your property feed (Kyero XML or similar) and we import your listings with photos, descriptions, and location data.</p>
+            <div class="contact-link-label">Email us</div>
+            <div class="contact-link-value">jrosario@mobius1.io</div>
           </div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
+          <svg style="margin-left:auto; color: var(--muted)" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 7h8M7.5 4l3.5 3-3.5 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://wa.me/18132205994" target="_blank" rel="noopener" class="contact-link">
+          <div class="contact-link-icon wa">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5A6.5 6.5 0 0 1 14.5 8c0 3.59-2.91 6.5-6.5 6.5a6.47 6.47 0 0 1-3.4-.96L1.5 14.5l1-3.5A6.47 6.47 0 0 1 1.5 8 6.5 6.5 0 0 1 8 1.5Z" stroke="#25D366" stroke-width="1.3"/>
+              <path d="M5.5 6.2c.1-.3.5-1.2 1.1-1.2.2 0 .4.1.5.2l.6 1c.1.1.1.3 0 .4l-.4.5c.3.6.7 1 1.3 1.3l.5-.4c.1-.1.3-.1.4 0l1 .6c.1.1.2.3.2.5 0 .6-.9 1-1.2 1.1C7.3 10.8 5.1 8.5 5.5 6.2Z" stroke="#25D366" stroke-width="1.1" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div>
-            <h3>Add the Link to Your Website</h3>
-            <p>Place a WhatsApp button on your website. When leads click it, they start a conversation with your AI assistant.</p>
+            <div class="contact-link-label">WhatsApp us</div>
+            <div class="contact-link-value">+1 (813) 220-5994</div>
           </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div>
-            <h3>AI Handles the Rest</h3>
-            <p>Yave qualifies leads, searches properties, answers questions, and books viewings. Your agents focus on closing deals.</p>
-          </div>
-        </div>
+          <svg style="margin-left:auto; color: var(--muted)" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 7h8M7.5 4l3.5 3-3.5 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="partners-section" id="partners">
-    <div class="container">
-      <div class="section-label">Partners</div>
-      <h2>Agency Partners</h2>
-      <p class="section-desc">Yave powers WhatsApp communication for real estate agencies across Spain.</p>
-      <div class="partner-card">
-        <p>We are currently onboarding our first agency partners in Madrid. Yave by Mobius 1 provides each partner agency with a dedicated WhatsApp Business number, AI-powered lead qualification, and automated viewing scheduling — all under the agency's own brand.</p>
-        <p style="margin-top: 16px;">Interested in becoming a partner? <a href="mailto:jrosario@mobius1.io">Get in touch</a>.</p>
-      </div>
-    </div>
-  </section>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    © 2026 Mobius 1 LLC. All rights reserved. Yave is a product of Mobius 1 LLC.
+  </div>
+  <div class="footer-right">
+    <span class="footer-badge">Built for real estate in</span>
+    <span class="footer-logo">España</span>
+  </div>
+</footer>
 
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <div class="section-label">Contact</div>
-      <h2>Get in Touch</h2>
-      <div class="contact-grid">
-        <div class="contact-item">
-          <h3>Company</h3>
-          <p>Mobius 1 LLC</p>
-        </div>
-        <div class="contact-item">
-          <h3>Email</h3>
-          <p><a href="mailto:jrosario@mobius1.io">jrosario@mobius1.io</a></p>
-        </div>
-        <div class="contact-item">
-          <h3>Phone</h3>
-          <p>+1 (813) 220-5994</p>
-        </div>
-        <div class="contact-item">
-          <h3>Address</h3>
-          <p>7901 4th St N STE 300<br>St. Petersburg, FL 33702<br>United States</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<script>
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-  <footer>
-    <p>&copy; 2026 Mobius 1 LLC. All rights reserved. Yave is a product of Mobius 1 LLC.</p>
-  </footer>
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.borderBottomColor = 'rgba(196,98,45,0.25)';
+    } else {
+      nav.style.borderBottomColor = '';
+    }
+  }, { passive: true });
+
+  // Mobile hamburger
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 </body>
 </html>
