@@ -969,31 +969,31 @@
   <div class="hero-visual">
     <svg class="mobius-svg" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Mobius strip illustration representing continuous AI-powered lead flow">
       <defs>
-        <!-- Left lobe: face-on, warm amber shimmer near crossing, deeper terra at tip -->
+        <!-- Left lobe: face-on, amber shimmer near crossing, deeper terra at tip -->
         <linearGradient id="leftFill" x1="100%" y1="0%" x2="0%" y2="0%">
           <stop offset="0%"   stop-color="#e8a235" stop-opacity="0.92"/>
           <stop offset="25%"  stop-color="#c4622d" stop-opacity="0.90"/>
           <stop offset="65%"  stop-color="#9a4820" stop-opacity="0.78"/>
           <stop offset="100%" stop-color="#7a3518" stop-opacity="0.58"/>
         </linearGradient>
-        <!-- Right lobe: behind at crossing, darker throughout -->
+        <!-- Right lobe: behind at crossing, slightly darker -->
         <linearGradient id="rightFill" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stop-color="#c4622d" stop-opacity="0.55"/>
-          <stop offset="50%"  stop-color="#8a3e1a" stop-opacity="0.42"/>
-          <stop offset="100%" stop-color="#5a2810" stop-opacity="0.28"/>
+          <stop offset="0%"   stop-color="#c4622d" stop-opacity="0.68"/>
+          <stop offset="50%"  stop-color="#8a3e1a" stop-opacity="0.52"/>
+          <stop offset="100%" stop-color="#5a2810" stop-opacity="0.35"/>
         </linearGradient>
-        <!-- Surface shading: dark at top/bottom ribbon edges, open in centre -->
-        <linearGradient id="leftShade" x1="0" y1="132" x2="0" y2="232" gradientUnits="userSpaceOnUse">
+        <!-- Surface shading: dark at ribbon top/bottom edges, open centre -->
+        <linearGradient id="leftShade" x1="0" y1="144" x2="0" y2="222" gradientUnits="userSpaceOnUse">
           <stop offset="0%"   stop-color="#0f0d0b" stop-opacity="0.48"/>
-          <stop offset="20%"  stop-color="#0f0d0b" stop-opacity="0"/>
-          <stop offset="80%"  stop-color="#0f0d0b" stop-opacity="0"/>
-          <stop offset="100%" stop-color="#0f0d0b" stop-opacity="0.38"/>
-        </linearGradient>
-        <linearGradient id="rightShade" x1="0" y1="136" x2="0" y2="214" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stop-color="#0f0d0b" stop-opacity="0.40"/>
           <stop offset="22%"  stop-color="#0f0d0b" stop-opacity="0"/>
           <stop offset="78%"  stop-color="#0f0d0b" stop-opacity="0"/>
-          <stop offset="100%" stop-color="#0f0d0b" stop-opacity="0.30"/>
+          <stop offset="100%" stop-color="#0f0d0b" stop-opacity="0.38"/>
+        </linearGradient>
+        <linearGradient id="rightShade" x1="0" y1="138" x2="0" y2="202" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#0f0d0b" stop-opacity="0.42"/>
+          <stop offset="24%"  stop-color="#0f0d0b" stop-opacity="0"/>
+          <stop offset="76%"  stop-color="#0f0d0b" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#0f0d0b" stop-opacity="0.32"/>
         </linearGradient>
         <!-- Highlight shimmer on left lobe face -->
         <radialGradient id="leftHighlight" cx="35%" cy="48%" r="52%">
@@ -1009,56 +1009,62 @@
           <feGaussianBlur stdDeviation="3" result="blur"/>
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
+        <!-- Subtle glow for labels -->
+        <filter id="labelGlow" x="-30%" y="-60%" width="160%" height="220%">
+          <feGaussianBlur stdDeviation="2.5" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
       </defs>
 
       <!-- Ambient glow at crossing -->
-      <ellipse cx="252" cy="178" rx="44" ry="26" fill="url(#crossGlow)"/>
+      <ellipse cx="252" cy="178" rx="40" ry="22" fill="url(#crossGlow)"/>
 
       <!-- RIGHT LOBE: behind at crossing, drawn first.
-           Similar width to left lobe; ribbon narrows at crossing (~16px) to show the twist. -->
-      <path d="M 253 170
-               C 294 146, 368 136, 432 150
-               C 462 164, 462 190, 430 202
-               C 368 214, 294 209, 253 186
+           Ribbon narrows at crossing (~12px) then opens to 44px at tip. -->
+      <path d="M 253 173
+               C 296 148, 372 138, 432 148
+               C 458 158, 458 182, 432 192
+               C 372 200, 296 195, 253 185
                Z"
             fill="url(#rightFill)"/>
-      <path d="M 253 170
-               C 294 146, 368 136, 432 150
-               C 462 164, 462 190, 430 202
-               C 368 214, 294 209, 253 186
+      <path d="M 253 173
+               C 296 148, 372 138, 432 148
+               C 458 158, 458 182, 432 192
+               C 372 200, 296 195, 253 185
                Z"
             fill="url(#rightShade)"/>
 
       <!-- LEFT LOBE: in front at crossing, drawn second.
-           Closing curve at crossing edge (x~260) shows the near ribbon surface. -->
-      <path d="M 250 170
-               C 208 146, 136 132, 76 146
-               C 44 158, 42 184, 70 208
-               C 104 228, 186 232, 250 186
-               C 256 182, 260 178, 260 174
-               C 260 170, 256 167, 250 170
+           Ribbon opens from 12px at crossing to 48px at tip.
+           Right edge closes via small bulge (x~260) showing the near surface. -->
+      <path d="M 250 173
+               C 200 155, 120 147, 62 154
+               C 42 160, 42 196, 62 202
+               C 120 218, 200 195, 250 185
+               C 256 181, 260 178, 260 174
+               C 260 170, 256 170, 250 173
                Z"
             fill="url(#leftFill)"/>
-      <path d="M 250 170
-               C 208 146, 136 132, 76 146
-               C 44 158, 42 184, 70 208
-               C 104 228, 186 232, 250 186
-               C 256 182, 260 178, 260 174
-               C 260 170, 256 167, 250 170
+      <path d="M 250 173
+               C 200 155, 120 147, 62 154
+               C 42 160, 42 196, 62 202
+               C 120 218, 200 195, 250 185
+               C 256 181, 260 178, 260 174
+               C 260 170, 256 170, 250 173
                Z"
             fill="url(#leftShade)"/>
-      <path d="M 250 170
-               C 208 146, 136 132, 76 146
-               C 44 158, 42 184, 70 208
-               C 104 228, 186 232, 250 186
-               C 256 182, 260 178, 260 174
-               C 260 170, 256 167, 250 170
+      <path d="M 250 173
+               C 200 155, 120 147, 62 154
+               C 42 160, 42 196, 62 202
+               C 120 218, 200 195, 250 185
+               C 256 181, 260 178, 260 174
+               C 260 170, 256 170, 250 173
                Z"
             fill="url(#leftHighlight)"/>
 
-      <!-- Depth shadow at crossing: left lobe passes in front of right -->
-      <path d="M 253 170 C 259 174, 259 182, 253 186"
-            stroke="rgba(4,3,2,0.90)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Depth shadow at crossing -->
+      <path d="M 253 173 C 259 177, 259 181, 253 185"
+            stroke="rgba(4,3,2,0.92)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
 
       <!-- Animated particles -->
       <circle r="4" fill="#e8a235" filter="url(#glow)" opacity="0.9">
@@ -1072,15 +1078,15 @@
         </animateMotion>
       </circle>
 
-      <!-- Particle path: ribbon centreline tracing both lobes of the figure-8 -->
+      <!-- Particle path: ribbon centreline tracing both lobes -->
       <path id="mobius-path"
             d="M 62 178
-               C 112 150, 196 144, 250 172
-               C 296 140, 374 135, 434 150
-               C 460 164, 460 192, 432 200
-               C 374 212, 296 207, 253 186
-               C 198 224, 112 222, 62 202
-               C 44 192, 44 174, 62 178
+               C 106 149, 192 148, 252 178
+               C 298 142, 374 138, 432 170
+               C 456 158, 458 184, 432 192
+               C 374 200, 298 196, 252 184
+               C 196 218, 108 214, 62 202
+               C 42 192, 42 168, 62 178
                Z"
             fill="none"/>
 
@@ -1094,18 +1100,18 @@
       <rect x="410" y="319" width="20" height="1" fill="rgba(196,98,45,0.3)"/>
       <rect x="429" y="300" width="1" height="20" fill="rgba(196,98,45,0.3)"/>
 
-      <!-- Waypoint dots: dark fill + amber ring, visible on any ribbon surface -->
+      <!-- Waypoint dots: pinned via getPointAtLength at t=0, 0.18, 0.42, 0.58 -->
       <circle cx="62"  cy="178" r="5" fill="rgba(12,10,8,0.72)" stroke="rgba(196,98,45,0.52)" stroke-width="1.8"/>
-      <circle cx="215" cy="159" r="5" fill="rgba(12,10,8,0.72)" stroke="rgba(196,98,45,0.70)" stroke-width="1.8"/>
-      <circle cx="417" cy="146" r="5" fill="rgba(12,10,8,0.72)" stroke="rgba(220,138,50,0.88)" stroke-width="1.8"/>
-      <circle cx="379" cy="206" r="5" fill="rgba(20,14,8,0.80)"  stroke="#e8a235"              stroke-width="2"/>
+      <circle cx="212" cy="163" r="5" fill="rgba(12,10,8,0.72)" stroke="rgba(196,98,45,0.72)" stroke-width="1.8"/>
+      <circle cx="408" cy="159" r="5" fill="rgba(12,10,8,0.72)" stroke="rgba(220,138,50,0.90)" stroke-width="1.8"/>
+      <circle cx="372" cy="196" r="5" fill="rgba(20,14,8,0.80)"  stroke="#e8a235"              stroke-width="2"/>
 
-      <!-- Labels: each positioned directly near its dot -->
-      <g font-family="'DM Mono', monospace" font-size="9">
-        <text x="12"  y="206" fill="rgba(196,98,45,0.52)" letter-spacing="2">LEAD IN</text>
-        <text x="155" y="142" fill="rgba(196,98,45,0.70)" letter-spacing="1.4">YAVE RESPONDS</text>
-        <text x="370" y="128" fill="rgba(196,98,45,0.88)" letter-spacing="2">VIEWING SET</text>
-        <text x="326" y="240" fill="rgba(196,98,45,1.00)" letter-spacing="2">DEAL CLOSED</text>
+      <!-- Labels: each near its dot, full-opacity amber tones for clear reading -->
+      <g font-family="'DM Mono', monospace" font-size="10" filter="url(#labelGlow)">
+        <text x="12"  y="210" fill="#7a3518" letter-spacing="2.5">LEAD IN</text>
+        <text x="148" y="146" fill="#b05a22" letter-spacing="2">YAVE RESPONDS</text>
+        <text x="345" y="138" fill="#d07830" letter-spacing="2">VIEWING SET</text>
+        <text x="302" y="235" fill="#e8a235" letter-spacing="2">DEAL CLOSED</text>
       </g>
     </svg>
   </div>
